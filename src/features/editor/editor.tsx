@@ -31,6 +31,7 @@ import useLayoutStore from "./store/use-layout-store";
 import ControlItemHorizontal from "./control-item-horizontal";
 import { SaveTimeframeModal } from "@/components/save-timeframe-modal";
 import { useTimeframeStore } from "./store/use-timeframe-store";
+import { useKeyboardShortcuts } from "@/hooks/use-keyboard-shortcuts";
 
 const stateManager = new StateManager({
 	size: {
@@ -58,6 +59,9 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 	const { selections, getCurrentGroupName } = useTimeframeStore();
 
 	useTimelineEvents();
+	
+	// Set up keyboard shortcuts
+	useKeyboardShortcuts();
 
 	const { setCompactFonts, setFonts } = useDataState();
 

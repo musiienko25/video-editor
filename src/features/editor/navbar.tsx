@@ -17,6 +17,8 @@ import {
 import { Label } from "@/components/ui/label";
 import { TimeframeManager } from "@/components/timeframe-manager";
 import { useTimeframeStore } from "./store/use-timeframe-store";
+import { PlaySelectionsButton } from "@/components/play-selections-button";
+import { ExportSelectionsModal } from "@/components/export-selections-modal";
 
 import type StateManager from "@designcombo/state";
 import { generateId } from "@designcombo/timeline";
@@ -131,6 +133,8 @@ export default function Navbar({
 			<div className="flex h-11 items-center justify-end gap-2">
 				<div className=" pointer-events-auto flex h-10 items-center gap-2 rounded-md px-2.5">
 					<TimeframeManager onLoadTimeframeGroup={loadTimeframeGroup} />
+					<PlaySelectionsButton />
+					<ExportSelectionsModal />
 					<Link href="https://discord.gg/Jmxsd5f2jp" target="_blank">
 						<Button className="h-7 rounded-lg" variant={"outline"}>
 							<LogoIcons.discord className="w-6 h-6" />
