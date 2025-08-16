@@ -29,6 +29,8 @@ import { useIsLargeScreen } from "@/hooks/use-media-query";
 import { ITrackItem } from "@designcombo/types";
 import useLayoutStore from "./store/use-layout-store";
 import ControlItemHorizontal from "./control-item-horizontal";
+import { SaveTimeframeModal } from "@/components/save-timeframe-modal";
+import { useTimeframeStore } from "./store/use-timeframe-store";
 
 const stateManager = new StateManager({
 	size: {
@@ -53,6 +55,7 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 		setTypeControlItem,
 	} = useLayoutStore();
 	const isLargeScreen = useIsLargeScreen();
+	const { selections, getCurrentGroupName } = useTimeframeStore();
 
 	useTimelineEvents();
 
@@ -235,6 +238,17 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 						onResize={handleTimelineResize}
 					>
 						{playerRef && <Timeline stateManager={stateManager} />}
+						{Object.keys(selections).length > 0 && (
+							<div className="absolute bottom-4 right-4 z-10">
+								<SaveTimeframeModal 
+									selections={selections}
+									currentName={getCurrentGroupName()}
+									onSave={() => {
+										// Refresh or update UI as needed
+									}}
+								/>
+							</div>
+						)}
 					</ResizablePanel>
 					{!isLargeScreen && !trackItem && loaded && <MenuListHorizontal />}
 					{!isLargeScreen && trackItem && <ControlItemHorizontal />}

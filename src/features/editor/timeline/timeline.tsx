@@ -21,6 +21,7 @@ import {
 import { ITrackItem } from "@designcombo/types";
 import { useTimelineOffsetX } from "../hooks/use-timeline-offset";
 import { useStateManagerEvents } from "../hooks/use-state-manager-events";
+import { TimelineTimeframeOverlay } from "@/components/timeline-timeframe-overlay";
 
 CanvasTimeline.registerItems({
 	Text,
@@ -303,6 +304,11 @@ const Timeline = ({ stateManager }: { stateManager: StateManager }) => {
 						className="absolute top-0 w-full"
 					>
 						<canvas id="designcombo-timeline-canvas" ref={canvasElRef} />
+						<TimelineTimeframeOverlay 
+							scale={scale}
+							duration={duration}
+							width={size.width}
+						/>
 					</div>
 					<ScrollArea.Root
 						type="always"
